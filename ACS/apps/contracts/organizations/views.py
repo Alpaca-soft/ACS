@@ -18,7 +18,7 @@ from ACS.apps.contracts.organizations.forms import OrganizationForms
 
 
 class OrganizationItemListView(ListView):
-    template_name = 'lib/LibLis/schools_list.html'
+    template_name = 'contracts/organizations/orgList.html'
 
     def get(self, request):
         if request.user.is_staff or request.user.is_superuser:
@@ -48,7 +48,7 @@ class OrganizationItemListView(ListView):
                 "result": True,
                 "articles": render_to_string(
                     request=request,
-                    template_name='lib/LibLis/school_list.html',
+                    template_name='contracts/organizations/orgList.html',
                     context={'object_list': get_paginated_page(request, Organization.objects.all())}
                 )
             })
@@ -69,7 +69,7 @@ def get_paginated_page(request, objects, number=10):
 
 # Create
 class OrganizationCreateView(PassRequestMixin, SuccessMessageMixin, generic.CreateView):
-    template_name = 'lib/LibLis/modals/create_reader.html'
+    template_name = 'contracts/organizations/orgCreate.html'
     form_class = OrganizationForms
     success_message = 'Читатель успешно создан.'
     success_url = reverse_lazy('LibLib:list')
@@ -78,7 +78,7 @@ class OrganizationCreateView(PassRequestMixin, SuccessMessageMixin, generic.Crea
 # Update
 class OrganizationUpdateView(PassRequestMixin, SuccessMessageMixin, generic.UpdateView):
     model = Organization
-    template_name = 'lib/LibLis/modals/update_reader.html'
+    template_name = 'contracts/organizations/orgUpdate.html'
     form_class = OrganizationForms
     success_message = 'Данные читателя были успешно отредактированы и сохранены.'
     success_url = reverse_lazy('LibLib:list')
@@ -88,20 +88,20 @@ class OrganizationUpdateView(PassRequestMixin, SuccessMessageMixin, generic.Upda
 class OrganizationReadView(generic.DetailView):
     model = Organization
     form_class = OrganizationForms
-    template_name = 'lib/LibLis/modals/read_reader.html'
+    template_name = 'contracts/organizations/orgView.html'
 
 
 # Delete
 class OrganizationDeleteView(DeleteAjaxMixin, generic.DeleteView):
     model = Organization
-    template_name = 'lib/LibLis/modals/delete_reader.html'
+    template_name = 'contracts/organizations/orgDelete.html'
     success_message = 'Читатель был удалён.'
     success_url = reverse_lazy('LibLib:list')
 
 
 class OrganizationListView(ListView):
     model = Organization
-    template_name = 'lib/LibLis/readers_list.html'
+    template_name = 'contracts/organizations/orgList.html'
 
 
 class ViewOrganizationForm:

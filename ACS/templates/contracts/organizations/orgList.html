@@ -33,7 +33,7 @@
                 <tr>
                     <th>№</th>
                     <th>Контрагент</th>
-                    <th>Юредический адрес"</th>
+                    <th>Юредический адрес</th>
                     <th>Фактический адрес</th>
                 </tr>
                 </thead>
@@ -41,15 +41,15 @@
                 {% for obj in object_list %}
                     <tr>
                         <td>{{ obj.id }}</td>
-                        <td><a href="{% url 'lib:read_reader' obj.pk %}" class="read-reader" data-toggle="modal">{{ obj.Reader_ID }}</a></td>
-                        <td>{{ obj.Name }}</td>
-                        <td><span class="price">{{ obj.code }}</span></td>
-                        <td>
-                            <button type="button" class="read-reader btn btn-sm btn-primary" data-id="{% url 'lib:read_reader' obj.pk %}" title="Профиль читателя"><span class="fa fa-address-card-o"></span></button>
-                            <button type="button" class="read-reader btn btn-sm btn-primary" data-id="{% url 'lib:read_reader' obj.pk %}" title="Списк книг на руках"><span class="fa fa-book"></span></button>
-                            <button type="button" class="update-reader btn btn-sm btn-success" data-id="{% url 'lib:update_reader' obj.pk %}" title="Редактировать читателя"><span class="fa fa-pencil"></span></button>
-                            <button type="button" class="delete-reader btn btn-sm btn-danger" data-id="{% url 'lib:delete_reader' obj.pk %}" title="Удалить читателя"><span class="fa fa-trash"></span></button>
-                        </td>
+                        <td><a href="" class="read-reader" data-toggle="modal">{{ obj.name }}</a></td>
+                        <td>{{ obj.legalAddress }}</td>
+                        <td><span class="price">{{ obj.actualAddress }}</span></td>
+{#                        <td>#}
+{#                            <button type="button" class="read-reader btn btn-sm btn-primary" data-id="{% url 'lib:read_reader' obj.pk %}" title="Профиль читателя"><span class="fa fa-address-card-o"></span></button>#}
+{#                            <button type="button" class="read-reader btn btn-sm btn-primary" data-id="{% url 'lib:read_reader' obj.pk %}" title="Списк книг на руках"><span class="fa fa-book"></span></button>#}
+{#                            <button type="button" class="update-reader btn btn-sm btn-success" data-id="{% url 'lib:update_reader' obj.pk %}" title="Редактировать читателя"><span class="fa fa-pencil"></span></button>#}
+{#                            <button type="button" class="delete-reader btn btn-sm btn-danger" data-id="{% url 'lib:delete_reader' obj.pk %}" title="Удалить читателя"><span class="fa fa-trash"></span></button>#}
+{#                        </td>#}
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -67,7 +67,7 @@
             $(function () {
 
                 // Add reader button
-                $(".create-reader").modalForm({formURL: "{% url 'lib:create_reader' %}"});
+                $(".create-reader").modalForm({formURL: "{% url 'contracts:contractsList' %}"});
 
                 // Update reader buttons
                 $(".update-reader").each(function () {
