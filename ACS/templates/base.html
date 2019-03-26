@@ -1,0 +1,105 @@
+{% load staticfiles %}
+<!--DOCTYPE html -->
+<html>
+<head>
+    <meta charset=utf-8>
+    <title>{% block head_title %}LIS{% endblock head_title %}</title>
+    <!-- Latest compiled and minified CSS -->
+
+    <link rel='stylesheet' href='{% static "css/base.css" %}'/>
+    <link rel='stylesheet' href='{% static "js/index.js" %}'/>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        {% block style %}{% endblock style %}
+    </style>
+
+    {% block head_extra %} {% endblock head_extra %}
+    <style>
+        body {
+            background-image: url("{% static "images/bg1.jpg" %}"); /* Путь к фоновому изображению */
+            background-attachment: fixed; /* Фиксируем фон веб-страницы */
+        }
+    </style>
+</head>
+<body>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
+
+<div id="fb-root"></div>
+
+{% include "messages_display.html" %}
+
+{% include "_header.html" %}
+
+
+<!-- Контент -->
+<div class="container bg-light col-lg-7">
+    <div class='col-sm'>
+        {% block content %}{% endblock content %}
+    </div>
+</div>
+
+
+<!-- Футер -->
+{% include "_footer.html" %}
+{% include "_modal.html" %}
+
+<!-- JavaScript -->
+{% block scripts %}
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- You can alternatively load the minified version -->
+    <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+{% endblock scripts %}
+
+{% block extrascripts %}{% endblock extrascripts %}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".content-markdown").each(function () {
+            var content = $(this).text()
+            var markedContent = marked(content)
+            $(this).html(markedContent)
+        })
+        $(".post-detail-item img").each(function () {
+            $(this).addClass("img-responsive");
+        })
+
+        var contentInput = $("#id_content");
+
+        function setContent(value) {
+            var markedContent = marked(value)
+            $("#preview-content").html(markedContent)
+            $("#preview-content img").each(function () {
+                $(this).addClass("img-responsive")
+            })
+        }
+
+        setContent(contentInput.val())
+        contentInput.keyup(function () {
+            var newContent = $(this).val()
+            setContent(newContent)
+        })
+        var titleInput = $("#id_title");
+
+        function setTitle(value) {
+            $("#preview-title").text(value)
+        }
+
+        setTitle(titleInput.val())
+        titleInput.keyup(function () {
+            var newContent = $(this).val()
+            setTitle(newContent)
+        })
+        $(".comment-reply-btn").click(function (event) {
+            event.preventDefault();
+            $(this).parent().next(".comment-reply").fadeToggle();
+        })
+        // preview-title
+        // preview-content
+    })
+</script>
+
+</body>
+</html>

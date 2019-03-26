@@ -1,0 +1,102 @@
+{% load static %}
+
+  <!-- Messages -->
+<div>
+    {% if messages %}
+        {% for message in messages %}
+            <div style="border-radius:0;" {% if message.tags %} class="alert alert-icon alert-{{ message.tags }} alert-dismissible fade show mb-0" role="alert" {% endif %}>
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+<!-- End Messages -->
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+    <a class="navbar-brand" href="{% url "contracts:contractsList" %}">Главное</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            {% if request.user.is_staff %}
+            <li class="nav-item active">
+                <a class="navbar-brand" href="{% url "contracts:contractsList" %}">СПЗ<span class="sr-only">(current)</span></a>
+            </li>
+
+
+            <li class="nav-item dropdown">
+                <a class="navbar-brand dropdown-toggle" href="{% url "contracts:contractsList" %}" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Читатели
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url "contracts:contractsList" %}">Контракты</a>
+                    <a class="dropdown-item" href="{% url "contracts:orgList" %}">Организации</a>
+                    {% if request.user.is_superuser %}
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url "contracts:status" %}">Управление</a>
+                    {% endif %}
+                </div>
+            </li>
+            {% endif %}
+            {% if request.user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="navbar-brand dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Дополнительно
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url "accounts:Users" %}">Пользователи</a>
+                        <a class="dropdown-item" href="#">Text</a>
+                        {% if request.user.is_staff %}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/admin/">Модераторская</a>
+                        {% endif %}
+                    </div>
+                </li>
+            {% endif %}
+            <!--
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="#">[Временно]</a>
+                    </li>-->
+        </ul>
+    <!-- Authetion -->
+        <form class="form-inline my-2 my-lg-0">
+
+            {% if not request.user.is_authenticated %}
+                <a class="navbar-brand" href='{% url "accounts:register" %}'><span class="fa fa-user-plus"></span> Регистрация</a>
+                <a class="navbar-brand" href='{% url "accounts:login" %}'><span class="fa fa-user-secret"></span> Авторизация</a>
+            {% else %}
+                <a class="navbar-brand" href='{% url "accounts:logout" %}'>Выход</a>
+                <a class="navbar-brand" href='{% url "accounts:login" %}'>
+                    <span class="fa fa-envelope-o"></span>
+                    <span class="badge badge-pill badge-primary">1</span>
+                </a>
+                {% block welcome-msg %}
+                    <a class="navbar-brand dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="fa fa-user-o"></span>
+                        {{ user.username }}
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <label>Вы авторизованы как:</label>
+                        <label>{{ user.get_full_name }}</label>
+                        <label>{{ user.groups.get }}</label>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url "accounts:profile" %}">Профиль пользователя</a>
+                    </div>
+                {% endblock %}
+            {% endif %}
+        </form>
+    <!-- End authetion -->
+    </div>
+</nav>
+<!-- End Navbar -->
