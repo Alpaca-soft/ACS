@@ -29,9 +29,9 @@ SECRET_KEY = 'xg=d2l0%tt#)uk!j$z%-7hrn=2ipsh0%i*qs6jdc_g6s@eqn!@'
 DEBUG = True
 
 if DEBUG == True:
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '172.17.66.206']
+    ALLOWED_HOSTS = ['localhost', 'it-5', '0.0.0.0', '127.0.0.1', '172.17.66.6']
 else:
-    ALLOWED_HOSTS = ['localhost', '172.17.66.206']
+    ALLOWED_HOSTS = ['localhost', 'it-5', '0.0.0.0', '127.0.0.1', '172.17.66.6']
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

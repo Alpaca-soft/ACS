@@ -20,7 +20,7 @@ class UserLoginForm(forms.Form):
         if username and password:
             user = authenticate(username=username, password=password)
             if not user:
-                raise forms.ValidationError("Невырно введены пользовательские данные.")
+                raise forms.ValidationError('Неверно введены пользовательские данные.')
             if not user.check_password(password):
                 raise forms.ValidationError("Неверный пароль.")
             if not user.is_active:

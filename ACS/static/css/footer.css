@@ -1,0 +1,10 @@
+.footer-acs {
+    position: fixed;        /* Фиксированное положение */
+    left: 0; bottom: 0;     /* Левый нижний угол */
+    padding: 10px;          /* Поля вокруг текста */
+    background: #2b2b2b;    /* Цвет фона */
+    color: #ffffff;         /* Цвет текста */
+    width: 100%;            /* Ширина слоя */
+    font-size: 10pt;        /* Размер шрифта */
+    text-align: right;      /* Текст по правому краю */
+   }

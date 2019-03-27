@@ -4,12 +4,14 @@
     <div id="auth modal" class="modal" role="dialog">
         <div class = "modal-dialog modal-lg">
             {% if form.errors %}
-                <p>Введённые пользовательские данные не совпадают. Пожалуйста попробуйте еще раз.</p>
+                <div class="alert alert-danger" role="alert">
+                    <p>Введённые пользовательские данные не совпадают. Пожалуйста попробуйте еще раз.</p>
+                </div>
             {% endif %}
 
-            <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+            <form method="post" align= center action="{% url 'django.contrib.auth.views.login' %}">
                 {% csrf_token %}
-                <table>
+                <table >
                     <tr>
                         <td>Пользователь<!--{{ form.username.label_tag }}--></td>
                         <td>{{ form.username }}</td>

@@ -4,9 +4,22 @@ h1 {
 
 .wmd-panel{
     margin-right: 0px !important;
-    margin-left: 0px !important;
+    margin-left:  0px !important;
 }
-
+body {
+    background-color: #3c3f41;
+}
 .comment-reply{
     display:none;
+}
+
+.content {
+     background: #fafafa;
+     float: right;
+     width: 90%;
+     height: 280px;
+    -moz-background-size: 100%; /* Firefox 3.6+ */
+    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: 100%; /* Opera 9.6+ */
+    background-size: 100%; /* Современные браузеры */
 }
