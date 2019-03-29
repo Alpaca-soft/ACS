@@ -3,34 +3,25 @@
 <html>
 <head>
     <meta charset=utf-8>
-    <title>{% block head_title %}LIS{% endblock head_title %}</title>
+    <title>{% block head_title %}ACS{% endblock head_title %}</title>
     <!-- Latest compiled and minified CSS -->
-<link rel='stylesheet' href='{% static "css/footer.css" %}'/>
+    <link rel='stylesheet' href='{% static "css/footer.css" %}'/>
     <link rel='stylesheet' href='{% static "css/base.css" %}'/>
     <link rel='stylesheet' href='{% static "js/index.js" %}'/>
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+{#    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">#}
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
     <style>
         {% block style %}{% endblock style %}
-    </style>
+        {#body {#}
+        {#    background-color: #3c3f41;#}
+        {#    background-attachment: fixed; /* Фиксируем фон веб-страницы */#}
 
-    {% block head_extra %} {% endblock head_extra %}
-    <style>
-        body {
-            background-color: #3c3f41;
-            background-attachment: fixed; /* Фиксируем фон веб-страницы */
-        }
     </style>
+    {% block head_extra %} {% endblock head_extra %}
 </head>
 <body>
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
-
-<div id="fb-root"></div>
-
-{% include "messages_display.html" %}
-
+{#{% include "messages_display.html" %}#}
 {% include "_header.html" %}
-
 
 <!-- Контент -->
 <div class="content">
@@ -54,52 +45,6 @@
 {% endblock scripts %}
 
 {% block extrascripts %}{% endblock extrascripts %}
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(".content-markdown").each(function () {
-            var content = $(this).text()
-            var markedContent = marked(content)
-            $(this).html(markedContent)
-        })
-        $(".post-detail-item img").each(function () {
-            $(this).addClass("img-responsive");
-        })
-
-        var contentInput = $("#id_content");
-
-        function setContent(value) {
-            var markedContent = marked(value)
-            $("#preview-content").html(markedContent)
-            $("#preview-content img").each(function () {
-                $(this).addClass("img-responsive")
-            })
-        }
-
-        setContent(contentInput.val())
-        contentInput.keyup(function () {
-            var newContent = $(this).val()
-            setContent(newContent)
-        })
-        var titleInput = $("#id_title");
-
-        function setTitle(value) {
-            $("#preview-title").text(value)
-        }
-
-        setTitle(titleInput.val())
-        titleInput.keyup(function () {
-            var newContent = $(this).val()
-            setTitle(newContent)
-        })
-        $(".comment-reply-btn").click(function (event) {
-            event.preventDefault();
-            $(this).parent().next(".comment-reply").fadeToggle();
-        })
-        // preview-title
-        // preview-content
-    })
-</script>
 
 </body>
 </html>

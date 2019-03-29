@@ -16,7 +16,7 @@
 <!-- End Messages -->
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: rgb(7,64,14);">
     <a class="navbar-brand" href="{% url "contracts:contractsList" %}">Главное</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,14 +26,14 @@
         <ul class="navbar-nav mr-auto">
             {% if request.user.is_staff %}
             <li class="nav-item active">
-                <a class="navbar-brand" href="{% url "contracts:contractsList" %}">СПЗ<span class="sr-only">(current)</span></a>
+                <a class="navbar-brand" href="{% url "contracts:contractsList" %}">Контракты<span class="sr-only">(current)</span></a>
             </li>
 
 
             <li class="nav-item dropdown">
                 <a class="navbar-brand dropdown-toggle" href="{% url "contracts:contractsList" %}" id="navbarDropdown" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Читатели
+                    11
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{% url "contracts:contractsList" %}">Контракты</a>
@@ -74,7 +74,7 @@
                 <a class="navbar-brand" href='{% url "accounts:register" %}'><span class="fa fa-user-plus"></span> Регистрация</a>
                 <a class="navbar-brand" href='{% url "accounts:login" %}'><span class="fa fa-user-secret"></span> Авторизация</a>
             {% else %}
-                <a class="navbar-brand" href='{% url "accounts:logout" %}'>Выход</a>
+
                 <a class="navbar-brand" href='{% url "accounts:login" %}'>
                     <span class="fa fa-envelope-o"></span>
                     <span class="badge badge-pill badge-primary">1</span>
@@ -92,6 +92,7 @@
                         <label>{{ user.groups.get }}</label>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{% url "accounts:profile" %}">Профиль пользователя</a>
+                        <a class="navbar-brand" href='{% url "accounts:logout" %}'>Выход</a>
                     </div>
                 {% endblock %}
             {% endif %}

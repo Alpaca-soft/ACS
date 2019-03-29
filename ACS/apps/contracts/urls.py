@@ -15,15 +15,15 @@ urlpatterns = [
     path('delete/<int:pk>', ContractsDeleteView.as_view(), name='contractsDelete'),
 
     path('org/', OrganizationItemListView.as_view(), name='orgList'),
-    path('orgCreate/', OrganizationCreateView.as_view(), name='orgCreate'),
-    path('orgUpdate/<int:pk>/', OrganizationUpdateView.as_view(), name='orgUpdate'),
-    path('orgRead/<int:pk>/', OrganizationReadView.as_view(), name='orgRead'),
-    path('orgDelete/<int:pk>/', OrganizationDeleteView.as_view(), name='orgDelete'),
+    path('org/create/', OrganizationCreateView.as_view(), name='orgCreate'),
+    path('org/update/<int:pk>/', OrganizationUpdateView.as_view(), name='orgUpdate'),
+    path('org/read/<int:pk>/', OrganizationReadView.as_view(), name='orgRead'),
+    path('org/delete/<int:pk>/', OrganizationDeleteView.as_view(), name='orgDelete'),
 
     path('status/', StatusListView, name='status'),
-    path('createStatus/', StatusCreateView.as_view(), name='createStatus'),
-    path('updateStatus/<int:pk>', StatusUpdateView.as_view(), name='updateStatus'),
-    path('readStatus/<int:pk>', StatusCreateView.as_view(), name='readStatus'),
-    path('deleteStatus/<int:pk>', StatusDeleteView.as_view(), name='deleteStatus'),
+    path('status/create/', StatusCreateView.as_view(), name='createStatus'),
+    path('status/update/<int:pk>', StatusUpdateView.as_view(), name='updateStatus'),
+    path('status/read/<int:pk>', StatusCreateView.as_view(), name='readStatus'),
+    path('status/delete/<int:pk>', StatusDeleteView.as_view(), name='deleteStatus'),
 
 ]
