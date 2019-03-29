@@ -23,11 +23,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(("ACS.apps.contracts.urls", 'contracts'), namespace='contracts')),
 
-    path('account/', include(('ACS.apps.accounts.urls', 'accounts'), namespace="accounts")),
+    path('accounts/', include(('ACS.apps.accounts.urls', 'accounts'), namespace="accounts")),
     path('api/auth/token/', obtain_jwt_token),
     path('api/users/', include(("ACS.apps.accounts.api.urls", 'users-api'), namespace='users-api')),
 
-    path('msg/', include(("ACS.apps.accounts.message.urls", 'msg'), namespace='msg')),
+    path('messages/', include(("ACS.apps.accounts.message.urls", 'msg'), namespace='msg')),
 
 
 

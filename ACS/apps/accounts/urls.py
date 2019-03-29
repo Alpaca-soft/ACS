@@ -6,18 +6,20 @@ from ACS.apps.accounts.contacts.views import changeContacts, ContactView, UsersV
 app_name = 'accounts'
 
 urlpatterns = [
-    path('register/', register_view, name='register'),
-    path('login/', login_view, name='login'),
 
-    path('logout/', logout_view, name='logout'),
+    path('register/', register_view, name='register'), # Регистрация пользователя
+    path('login/', login_view, name='login'), # Авторизация пользователя
+
+    path('logout/', logout_view, name='logout'), # Выход из УЗ
 
     path('profile/', view_profile, name='profile'),
     path('profile/<int:pk>', view_profile, name='profile_pk'),
     path('profile/edit/', edit_profile, name='editProfile'),
     path('profile/edit/<int:pk>', edit_profile, name='editOutherProfile'),
     path('profile/contacts/', ContactView.as_view(), name='ProfileContacts'),
-    path('users/', UsersView.as_view(), name='Users'),
-    path('changePassword/', change_password, name='changePassword'),
-    path('contact/<str:operation>/<int:pk>', changeContacts, name='changeContact'),
+    path('profile/users/', UsersView.as_view(), name='Users'),
+    path('profile/changePassword/', change_password, name='changePassword'),
+    path('profile/contact/<str:operation>/<int:pk>', changeContacts, name='changeContact'),
     #url(r'^connect/(?P<operation>.+)/(?P<pk>\d+)/$', changeContacts, name='changeContact')
+
 ]
