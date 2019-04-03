@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
     <h1>{{ title }}</h1>
-
     <div class="row">
         <div class="modal-body">
             <table class="table">
@@ -17,9 +15,7 @@
                     {% for contact in contacts %}
                         <tr>
                             <td>
-                                <a href="{% url 'accounts:profile_pk' pk=user.pk %}">
-                                    {{ contact.username }}
-                                </a>
+                                <a href="{% url 'accounts:profile_pk' pk=user.pk %}"> {{ contact.username }}</a>
                             </td>
                             <td>
                                 {{ user.groups.get }}
@@ -37,11 +33,7 @@
             </table>
         </div>
 </div>
-
-
-    <br>
-    <br>
-
+    <br><br>
     <div class="pagination justify-content-center">
         <nav aria-label="...">
             <ul class="pagination justify-content-center">
@@ -69,5 +61,4 @@
             </ul>
         </nav>
     </div>
-
 {% endblock %}

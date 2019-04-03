@@ -6,12 +6,13 @@ from ACS.apps.accounts.contacts.views import changeContacts, ContactView, UsersV
 app_name = 'accounts'
 
 urlpatterns = [
-
-    path('register/', register_view, name='register'), # Регистрация пользователя
-    path('login/', login_view, name='login'), # Авторизация пользователя
-
-    path('logout/', logout_view, name='logout'), # Выход из УЗ
-
+    # Регистрация пользователя
+    path('register/', register_view, name='register'),
+    # Авторизация пользователя
+    path('login/', login_view, name='login'),
+    # Выход из УЗ
+    path('logout/', logout_view, name='logout'),
+    # Профиль пользователя
     path('profile/', view_profile, name='profile'),
     path('profile/<int:pk>', view_profile, name='profile_pk'),
     path('profile/edit/', edit_profile, name='editProfile'),

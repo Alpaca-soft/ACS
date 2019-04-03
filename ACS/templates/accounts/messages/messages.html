@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-
     {% if not chat %}
         <div class="panel panel-body">
             {% trans "Невозможно начать беседу. Не найден пользователь или вы не имеете доступа к данной беседе." %}
@@ -25,7 +24,4 @@
             </form>
         </div>
     {% endif %}
-
-
-
 {% endblock %}
