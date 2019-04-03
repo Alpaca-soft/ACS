@@ -1,50 +1,26 @@
 {% load staticfiles %}
 <!--DOCTYPE html -->
 <html>
-<head>
-    <meta charset=utf-8>
-    <title>{% block head_title %}ACS{% endblock head_title %}</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel='stylesheet' href='{% static "css/footer.css" %}'/>
-    <link rel='stylesheet' href='{% static "css/base.css" %}'/>
-    <link rel='stylesheet' href='{% static "js/index.js" %}'/>
-{#    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">#}
-    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
-    <style>
-        {% block style %}{% endblock style %}
-        {#body {#}
-        {#    background-color: #3c3f41;#}
-        {#    background-attachment: fixed; /* Фиксируем фон веб-страницы */#}
-
-    </style>
-    {% block head_extra %} {% endblock head_extra %}
-</head>
-<body>
-{#{% include "messages_display.html" %}#}
-{% include "_header.html" %}
-
-<!-- Контент -->
-<div class="content">
-    <div class='col-sm'>
-        {% block content %}{% endblock content %}
-   </div>
-</div>
-
-
-<!-- Футер -->
-{% include "_footer.html" %}
-{% include "_modal.html" %}
-
-<!-- JavaScript -->
-{% block scripts %}
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
-    <!-- You can alternatively load the minified version -->
-    <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
-{% endblock scripts %}
-
-{% block extrascripts %}{% endblock extrascripts %}
-
-</body>
+    <head>
+        <meta charset=utf-8>
+        <title>{% block head_title %}ACS{% endblock head_title %}</title>
+        <!-- Latest compiled and minified CSS -->
+        {% include "_css.html" %}
+        {% block head_extra %}{% endblock head_extra %}
+    </head>
+    <body>
+    {#{% include "messages_display.html" %}#}
+        {% include "_header.html" %}
+    <!-- Контент -->
+    <div class="content">
+        <div class='col-sm'>
+            {% block content %}{% endblock content %}
+       </div>
+    </div>
+    <!-- Футер -->
+        {% include "_footer.html" %}
+        {% include "_modal.html" %}
+        {% include "_JavaScript.html" %}
+        {% block extrascripts %}{% endblock extrascripts %}
+    </body>
 </html>
