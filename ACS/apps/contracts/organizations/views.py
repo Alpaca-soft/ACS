@@ -29,7 +29,7 @@ class OrganizationItemListView(ListView):
         query = request.GET.get("q")
         if query:
             queryset_list = queryset_list.filter(
-                Q(rdr_id__icontains=query) |
+                Q(id__icontains=query) |
                 Q(name__icontains=query)
             ).distinct()
 
@@ -56,7 +56,7 @@ class OrganizationItemListView(ListView):
             raise Http404()
 
 
-def get_paginated_page(request, objects, number=10):
+def get_paginated_page(request, objects, number=5):
     current_page = Paginator(objects, number)
     page = request.GET.get('page') if request.method == 'GET' else request.POST.get('page')
     try:
@@ -72,7 +72,7 @@ class OrganizationCreateView(PassRequestMixin, SuccessMessageMixin, generic.Crea
     template_name = 'contracts/organizations/orgCreate.html'
     form_class = OrganizationForms
     success_message = 'Читатель успешно создан.'
-    success_url = reverse_lazy('LibLib:list')
+    success_url = reverse_lazy('contracts:orgList')
 
 
 # Update
@@ -81,7 +81,7 @@ class OrganizationUpdateView(PassRequestMixin, SuccessMessageMixin, generic.Upda
     template_name = 'contracts/organizations/orgUpdate.html'
     form_class = OrganizationForms
     success_message = 'Данные читателя были успешно отредактированы и сохранены.'
-    success_url = reverse_lazy('LibLib:list')
+    success_url = reverse_lazy('contracts:orgList')
 
 
 # Read
@@ -96,7 +96,7 @@ class OrganizationDeleteView(DeleteAjaxMixin, generic.DeleteView):
     model = Organization
     template_name = 'contracts/organizations/orgDelete.html'
     success_message = 'Читатель был удалён.'
-    success_url = reverse_lazy('LibLib:list')
+    success_url = reverse_lazy('contracts:orgList')
 
 
 class OrganizationListView(ListView):

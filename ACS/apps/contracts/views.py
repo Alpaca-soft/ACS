@@ -70,39 +70,39 @@ def get_paginated_page(request, objects, number=10):
 
 # Create
 class ContractsCreateView(PassRequestMixin, SuccessMessageMixin, generic.CreateView):
-    template_name = 'lib/LibLis/modals/create_reader.html'
+    template_name = 'contracts/organizations/orgCreate.html'
     form_class = ContractsForms
     success_message = 'Читатель успешно создан.'
-    success_url = reverse_lazy('LibLib:list')
+    success_url = reverse_lazy('contracts:contractsList')
 
 
 # Update
 class ContractsUpdateView(PassRequestMixin, SuccessMessageMixin, generic.UpdateView):
     model = Contracts
-    template_name = 'lib/LibLis/modals/update_reader.html'
+    template_name = 'contracts/organizations/orgUpdate'
     form_class = ContractsForms
     success_message = 'Данные читателя были успешно отредактированы и сохранены.'
-    success_url = reverse_lazy('LibLib:list')
+    success_url = reverse_lazy('contracts:contractsList')
 
 
 # Read
 class ContractsReadView(generic.DetailView):
     model = Contracts
     form_class = ContractsForms
-    template_name = 'lib/LibLis/modals/read_reader.html'
+    template_name = 'contracts/organizations/orgView'
 
 
 # Delete
 class ContractsDeleteView(DeleteAjaxMixin, generic.DeleteView):
     model = Contracts
-    template_name = 'lib/LibLis/modals/delete_reader.html'
+    template_name = 'contracts/organizations/orgDelete'
     success_message = 'Читатель был удалён.'
-    success_url = reverse_lazy('LibLib:list')
+    success_url = reverse_lazy('contracts:contractsList')
 
 
 class ContractsListView(ListView):
     model = Contracts
-    template_name = 'lib/LibLis/readers_list.html'
+    template_name = 'contracts/organizations/orgList'
 
 
 class ViewContractsForm:

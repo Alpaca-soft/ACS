@@ -17,7 +17,7 @@ from bootstrap_modal_forms.mixins import PassRequestMixin, DeleteAjaxMixin
 # Пагинация
 
 class StatusItemListView(ListView):
-    template_name = 'lib/LibLis/status/statusList.html'
+    template_name = 'status/marks/statusList.html'
 
     def get(self, request):
         if request.user.is_superuser:
@@ -40,7 +40,7 @@ class StatusItemListView(ListView):
                 "result": True,
                 "articles": render_to_string(
                     request=request,
-                    template_name='lib/LibLis/readers_list.html',
+                    template_name='status/marks/statusList.html',
                     context={'object_list': get_paginated_page(request, Status.objects.all())}
                 )
             })
@@ -61,7 +61,7 @@ def get_paginated_page(request, objects, number=10):
 
 # ==== Status
 class StatusCreateView(PassRequestMixin, SuccessMessageMixin, generic.CreateView):
-    template_name = 'lib/LibLis/modals/create_sigles.html'
+    template_name = 'lib/LibLis/modals/statusCreate.html'
     form_class = StatusForm
     success_message = 'Читатель успешно создан.'
     success_url = reverse_lazy('lib:list')
@@ -70,7 +70,7 @@ class StatusCreateView(PassRequestMixin, SuccessMessageMixin, generic.CreateView
 # Update
 class StatusUpdateView(PassRequestMixin, SuccessMessageMixin, generic.UpdateView):
     model = Status
-    template_name = 'lib/LibLis/modals/update_reader.html'
+    template_name = 'status/marks/statusUpdate.html'
     form_class = StatusForm
     success_message = 'Данные читателя были успешно отредактированы и сохранены.'
     success_url = reverse_lazy('lib:list')
@@ -80,20 +80,20 @@ class StatusUpdateView(PassRequestMixin, SuccessMessageMixin, generic.UpdateView
 class StatusReadView(generic.DetailView):
     model = Status
     form_class = StatusForm
-    template_name = 'lib/LibLis/modals/read_reader.html'
+    template_name = 'status/marks/statusRead.html'
 
 
 # Delete
 class StatusDeleteView(DeleteAjaxMixin, generic.DeleteView):
     model = Status
-    template_name = 'lib/LibLis/modals/delete_reader.html'
+    template_name = 'status/marks/statusDelete.html'
     success_message = 'Читатель был удалён.'
     success_url = reverse_lazy('lib:list')
 
 
 class StatusListView(ListView):
     model = Status
-    template_name = 'lib/LibLis/statusList.html'
+    template_name = 'status/marks/statusList.html'
 
 
 class StatusViewSiglesForm:

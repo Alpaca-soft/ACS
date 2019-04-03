@@ -11,5 +11,7 @@ class OrganizationForms(PopRequestMixin, CreateUpdateAjaxMixin, forms.ModelForm)
     class Meta:
         model = Organization
         fields = [
-
+            'name',
+            'legalAddress',
+            'actualAddress',
         ]

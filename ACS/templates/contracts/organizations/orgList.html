@@ -5,27 +5,21 @@
 {% endblock %}
 
 {% block content %}
-
     <!-- Шапка -->
     <h1>{{ title }}</h1>
     {% load widget_tweaks %}
-    <!-- <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        </div> /.modal -->
-
     <form method='GET' action='' class='row'>
         <div class='col-sm-10 '>
             <div class='input-group mb-3'>
                 <input class='form-control' type='text' name='q' placeholder='Поиск читателя'
                        value='{{ request.GET.q }}'/>
                 <span class='input-group-append'>
-                    <!-- <input class='btn btn-default' type='submit' value='Search' /> -->
                     <button class='btn btn-outline-secondary' type='submit'>Поиск <i class="fa fa-search"></i></button>
                 </span>
             </div>
         </div>
     </form>
-    <!-- Таблица вывода читателей -->
-
+    <!-- Таблица вывода организаций -->
     <div class="row">
         <div class="modal-body">
             <table class="table">
@@ -41,15 +35,14 @@
                 {% for obj in object_list %}
                     <tr>
                         <td>{{ obj.id }}</td>
-                        <td><a href="" class="read-reader" data-toggle="modal">{{ obj.name }}</a></td>
+                        <td><a href="" class="contractsRead" data-toggle="modal">{{ obj.name }}</a></td>
                         <td>{{ obj.legalAddress }}</td>
                         <td><span class="price">{{ obj.actualAddress }}</span></td>
-{#                        <td>#}
-{#                            <button type="button" class="read-reader btn btn-sm btn-primary" data-id="{% url 'lib:read_reader' obj.pk %}" title="Профиль читателя"><span class="fa fa-address-card-o"></span></button>#}
-{#                            <button type="button" class="read-reader btn btn-sm btn-primary" data-id="{% url 'lib:read_reader' obj.pk %}" title="Списк книг на руках"><span class="fa fa-book"></span></button>#}
-{#                            <button type="button" class="update-reader btn btn-sm btn-success" data-id="{% url 'lib:update_reader' obj.pk %}" title="Редактировать читателя"><span class="fa fa-pencil"></span></button>#}
-{#                            <button type="button" class="delete-reader btn btn-sm btn-danger" data-id="{% url 'lib:delete_reader' obj.pk %}" title="Удалить читателя"><span class="fa fa-trash"></span></button>#}
-{#                        </td>#}
+                        <td>
+                            <button type="button" class="orgRead btn btn-sm btn-primary" data-id="{% url 'contracts:orgRead' obj.pk %}" title="Инормация об организации"><span class="fa fa-address-card-o"></span></button>
+                            <button type="button" class="orgUpdate btn btn-sm btn-success" data-id="{% url 'contracts:orgUpdate' obj.pk %}" title="Редактировать читателя"><span class="fa fa-pencil"></span></button>
+                            <button type="button" class="orgDelete btn btn-sm btn-danger" data-id="{% url 'contracts:orgDelete' obj.pk %}" title="Удалить читателя"><span class="fa fa-trash"></span></button>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -58,48 +51,41 @@
     </div>
 
     <div class="btn-group justify-content-center" role="group" aria-label="Basic example">
-        <button type="button" class="create-reader btn btn-secondary"><span class="fa fa-plus mr-2"></span>Добавить организацию</button>
-        <button type="button" class="btn btn-secondary">Спсиок книг на руках</button>
-        <button type="button" class="btn btn-secondary">Сортировка</button>
+        <button type="button" class="orgCreate btn btn-secondary"><span class="fa fa-plus mr-2"></span>Добавить организацию</button>
+        <button type="button" class="btn btn-secondary">-</button>
+        <button type="button" class="btn btn-secondary">-</button>
     </div>
     {% block extrascripts %}
         <script type="text/javascript">
             $(function () {
-
                 // Add reader button
-                $(".create-reader").modalForm({formURL: "{% url 'contracts:contractsList' %}"});
-
+                $(".orgCreate").modalForm({formURL: "{% url 'contracts:orgCreate' %}"});
                 // Update reader buttons
-                $(".update-reader").each(function () {
+                $(".orgUpdate").each(function () {
                     $(this).modalForm({formURL: $(this).data('id')});
                 });
-
                 // Read reader buttons
-                $(".read-reader").each(function () {
+                $(".orgRead").each(function () {
                     $(this).modalForm({formURL: $(this).data('id')});
                 });
-
                 // Delete reader buttons
-                $(".delete-reader").each(function () {
+                $(".orgDelete").each(function () {
                     $(this).modalForm({formURL: $(this).data('id')});
                 });
-
             });
         </script>
     {% endblock extrascripts %}
-
     <!-- Пагинация -->
-    <br><br>
     <div class="pagination justify-content-center">
         <nav aria-label="...">
             <ul class="pagination justify-content-center">
                 {% if object_list.has_previous %}
                     <li class="page-item">
-                        <a class="page-link" href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" tabindex="-1">&laquo; Туда</a>
+                        <a class="page-link" href="?page={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" tabindex="-1">&laquo; Назад</a>
                     </li>
                 {% else %}
                     <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">&laquo; Туда</a>
+                        <a class="page-link" href="#" tabindex="-1">&laquo; Назад</a>
                     </li>
                 {% endif %}
                 <li class="page-item disabled">
@@ -107,11 +93,11 @@
                 </li>
                 {% if object_list.has_next %}
                     <li class="page-item">
-                        <a class="page-link" href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Сюда &raquo;</a>
+                        <a class="page-link" href="?page={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Вперёд &raquo;</a>
                     </li>
                 {% else %}
                     <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">Сюда &raquo;</a>
+                        <a class="page-link" href="#" tabindex="-1">Вперёд &raquo;</a>
                     </li>
                 {% endif %}
             </ul>

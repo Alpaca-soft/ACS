@@ -10,7 +10,7 @@ app_name = 'Contracts'
 urlpatterns = [
 
     path('', ContractsItemListView.as_view(), name='contractsList'),
-    path('create/', ContractsCreateView.as_view(), name='contractsReader'),
+    path('create/', ContractsCreateView.as_view(), name='contractsCreate'),
     path('update/<int:pk>', ContractsUpdateView.as_view(), name='contractsUpdate'),
     path('read/<int:pk>', ContractsReadView.as_view(), name='contractsRead'),
     path('delete/<int:pk>', ContractsDeleteView.as_view(), name='contractsDelete'),

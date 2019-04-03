@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 from ACS.apps.contracts.organizations.models import *
+from ACS.apps.contracts.phonebook.models import *
 
 
 class ContractsManager(models.Manager):
